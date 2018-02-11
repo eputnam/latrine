@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'latrineapp.middleware.dev_cors_middleware', # allowing cross-origin requests for development
 ]
 
 ROOT_URLCONF = 'latrine_django.urls'
