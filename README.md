@@ -5,7 +5,7 @@ Web app for finding hygiene resources in Portland, OR
 
 ## Instructions for the Team
 1. Fork and clone this project.
-### How to run a cloned Django project:
+### For Django:
 2. Django requires Python to run. Download Python3 at https://www.python.org/downloads/ or with your operating system's package manager.
 3. You may need to install ```pip``` (Python package manager) if you don't have it already. Follow [pip installation](http://pip.readthedocs.io/en/stable/installing/#install-pip).
 4. Install ```virtualenv``` with ```pip``` (pip is already installed if you're using the latest version of Python). ```virtualenv``` is a tool to create isolated Python environments.
@@ -30,6 +30,23 @@ Web app for finding hygiene resources in Portland, OR
     $ python manage.py runserver
     ```
 9. Open http://localhost:8000 in your browser to view the app.
+### For React:
+The React app will live in the ```/frontend``` folder and talk to Django over an API.
+1. You’ll need to have [Node.js] on your local development machine. The Node.js package comes with ```npm```, the package manager for JavaScript.
+1. ```cd``` into the ```/frontend``` directory and install the existing setup:
+    ```sh
+    $ cd ./frontend
+    $ npm install
+    ```
+2. Install ```axios```. It's a library for sending http requests (similar to ajax), which will be used for handling API calls.
+    ```sh
+    $ npm install axios --save
+    ```
+3. To start the development server, run:
+    ```sh
+    $ npm start
+    ```
+4. Open http://localhost:3000 in your browser to view the app.
 
 # Deploy
 
