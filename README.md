@@ -32,7 +32,7 @@ Web app for finding hygiene resources in Portland, OR
 9. Open http://localhost:8000 in your browser to view the app.
 ### For React:
 The React app will live in the ```/frontend``` folder and talk to Django over an API.
-1. You’ll need to have [Node.js] on your local development machine. The Node.js package comes with ```npm```, the package manager for JavaScript.
+1. You’ll need to have [Node.js](http://nodejs.org/en/) on your local development machine. The Node.js package comes with ```npm```, the package manager for JavaScript.
 1. ```cd``` into the ```/frontend``` directory and install the existing setup:
     ```sh
     $ cd ./frontend
