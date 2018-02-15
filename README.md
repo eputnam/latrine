@@ -38,15 +38,11 @@ The React app will live in the ```/frontend``` folder and talk to Django over an
     $ cd ./frontend
     $ npm install
     ```
-2. Install ```axios```. It's a library for sending http requests (similar to ajax), which will be used for handling API calls.
-    ```sh
-    $ npm install axios --save
-    ```
-3. To start the development server, run:
+2. To start the development server, run:
     ```sh
     $ npm start
     ```
-4. Open http://localhost:3000 in your browser to view the app.
+3. Open http://localhost:3000 in your browser to view the app.
 
 # Deploy
 
