@@ -1,7 +1,3 @@
 .app {
-  display: flex;
-  justify-content: center;
   background-color: #badc58;
-  height: 100vh;
-  width: 100%;
 }
