@@ -49,3 +49,5 @@ The React app will live in the ```/frontend``` folder and talk to Django over an
 # Run Tests
 
 # Contribute!
+
+Check out [CONTRIBUTING.md](CONTRIBUTING.md) for details.
