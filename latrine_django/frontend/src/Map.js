@@ -29,7 +29,8 @@ export class MapContainer extends Component {
     return (
       <Map
       google={this.props.google}
-      style={{width: '100%', height: '100%'}}
+      style={{width: '100%', height: '100%', margin: 'auto'}}
+      containerStyle={{width: '100vw', height: '93vh', margin: 'auto'}}
       zoom={14}
       initialCenter={{
         lat: 45.5231,
@@ -39,19 +40,22 @@ export class MapContainer extends Component {
         {
           this.state.restrooms.map((i, markerindex) => {
             const google = window.google;
+            if (this.props.restroomsChecked) {
             return (
               <Marker
-                key={markerindex}
-                title={'RefugeRestrooms.org -' + i.street}
-                name={'RefugeRestrooms.org'}
-                position={{ lat: i.latitude, lng: i.longitude }}
-                icon={{
-                  url: require("./images/potty.png"),
-                  anchor: new google.maps.Point(32,32),
-                  scaledSize: new google.maps.Size(45,45)
-                }}
+              key={markerindex}
+              title={'RefugeRestrooms.org -' + i.street}
+              name={'RefugeRestrooms.org'}
+              position={{ lat: i.latitude, lng: i.longitude }}
+              icon={{
+                url: require("./images/potty.png"),
+                anchor: new google.maps.Point(32,32),
+                scaledSize: new google.maps.Size(45,45)
+              }}
               />
-            )
+            )} else {
+              return null
+            }
           })
         }
       </Map>

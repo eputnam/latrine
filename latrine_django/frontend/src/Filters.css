@@ -1,0 +1,15 @@
+.filterbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  padding: 0.5em;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  margin: auto 0.5em;
+}
