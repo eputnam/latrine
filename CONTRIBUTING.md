@@ -18,11 +18,20 @@ This helps everyone. It helps you divide up and organize your work and in the un
 1. **Commit messages are important**
 A good commit message is like...a good commit message! Easy to read and concise yet informative. If you're looking for guidelines, [this page](https://chris.beams.io/posts/git-commit/) has some pretty good ones. If you don't feel like reading that, here are a few questions to get you started.
 
-1. What is the current behavior?
-2. Why does it need to be changed?
-3. How did you change it?
+* What is the current behavior?
+* Why does it need to be changed?
+* How did you change it?
 
 In your message, please include a short, descriptive title and include answers to the above questions in the body.
+
+## Reviewing/Merging a Pull Request
+This section is for those who have push access to the repository.
+
+* Is this a new feature? A bugfix? Is it a backwards incompatible?
+* Does this change need tests? Does the PR include tests?
+* Should the documentation be updated for this change?
+* _Do Not Merge Your Own Pull Request_
+It's common and good practice to have someone else hit that big green button. Why bother with a pull request if not to have someone else review and merge your work? This is a group/community project so not only is it important to have someone else do a sanity check on your work, but others should have a chance to weigh in on your code if they want to.
 
 ## Documentation
 
