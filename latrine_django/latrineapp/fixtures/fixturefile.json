@@ -1,0 +1,168 @@
+[
+  {
+    "model": "latrineapp.place",
+    "pk": 1,
+    "fields": {
+      "organization": "Rose Haven",
+      "website": "http://rosehaven.org",
+      "short_description": "Rose Haven offers various facilities to women and children in need.",
+      "address": "627 NW 18th Ave., Portland, OR 97209",
+      "phone": "503-248-6364",
+      "lat": "45.527666",
+      "lng": "-122.689642",
+      "gender": "women, children"
+    }
+  },
+  {
+    "model": "latrineapp.resource",
+    "pk": 1,
+    "fields": {
+      "facility_type": "showers",
+      "hours": "Monday, Tuesday and Thursday, from 9am-4pm. Every Wednesday from 1-3pm and Fridays from 9am-12.",
+      "short_description": "Private shower facilities for women and children in need.",
+      "place": 1
+    }
+  },
+  {
+    "model": "latrineapp.resource",
+    "pk": 2,
+    "fields": {
+      "facility_type": "restrooms",
+      "hours": "24h",
+      "short_description": "Accessible restrooms.",
+      "place": 1
+    }
+  },
+  {
+    "model": "latrineapp.feedback",
+    "pk": 1,
+    "fields": {
+      "icon_type": "thumbs_up",
+      "comment": "Safe place!",
+      "resource": 1
+    }
+  },
+  {
+    "model": "latrineapp.feedback",
+    "pk": 2,
+    "fields": {
+      "icon_type": "thumbs_down",
+      "comment": "Not at this address anymore!",
+      "resource": 1
+    }
+  },
+  {
+    "model": "latrineapp.feedback",
+    "pk": 3,
+    "fields": {
+      "icon_type": "thumbs_down",
+      "comment": "Filthy restrooms!",
+      "resource": 2
+    }
+  },
+  {
+    "model": "latrineapp.place",
+    "pk": 2,
+    "fields": {
+      "organization": "Transition Projects",
+      "website": "http://www.tprojects.org",
+      "short_description": "The Resource Center helps connect people to a wide range of resources and services – seven days a week, 365 days-a-year.",
+      "address": "650 NW Irving Street, Portland, OR 97209",
+      "phone": "503-280-4700",
+      "lat": "45.527779",
+      "lng": "-122.677340",
+      "gender": "men, women"
+    }
+  },
+  {
+    "model": "latrineapp.resource",
+    "pk": 3,
+    "fields": {
+      "facility_type": "showers",
+      "hours": "7am-11am.",
+      "short_description": "Showers available for men and women.",
+      "place": 2
+    }
+  },
+  {
+    "model": "latrineapp.place",
+    "pk": 3,
+    "fields": {
+      "organization": "Portland Rescue Mission's Burnside Shelter",
+      "website": "http://www.portlandrescuemission.org/",
+      "short_description": "Food, shelter, clothing, mail service, restrooms, showers and other emergency services are available free of charge at Portland Rescue Mission's Burnside Shelter.",
+      "address": "111 W. Burnside Street, Portland, OR 97209",
+      "phone": "503-906-7690",
+      "lat": "45.523368",
+      "lng": "-122.671689",
+      "gender": "men, women, children",
+      "image": "http://www.oregonlive.com/portland-homeless/art/1homelessslideshow.jpg"
+    }
+  },
+  {
+    "model": "latrineapp.resource",
+    "pk": 4,
+    "fields": {
+      "facility_type": "restrooms",
+      "hours": "24h",
+      "short_description": "Safe 24-hour restrooms available for men, women, and children.",
+      "place": 3
+    }
+  },
+  {
+    "model": "latrineapp.resource",
+    "pk": 5,
+    "fields": {
+      "facility_type": "showers",
+      "hours": "24h",
+      "short_description": "Showers and clothing are available to shelter guests. Additional shower times available through the Guest Care Center’s daily schedule.",
+      "place": 3
+    }
+  },
+  {
+    "model": "latrineapp.place",
+    "pk": 4,
+    "fields": {
+      "organization": "Portland Homeless Family Solutions - Goose Hollow Family Shelter",
+      "website": "http://www.pdxhfs.org/",
+      "short_description": "This night shelter supports families with children.",
+      "address": "First United Methodist Church, 1838 SW Jefferson, Portland, OR 97201",
+      "phone": "503-915-8307",
+      "lat": "45.517493",
+      "lng": "-122.693411",
+      "gender": "men, women, children"
+    }
+  },
+  {
+    "model": "latrineapp.resource",
+    "pk": 6,
+    "fields": {
+      "facility_type": "showers",
+      "hours": "The shelter operates year round.",
+      "place": 4
+    }
+  },
+  {
+    "model": "latrineapp.place",
+    "pk": 5,
+    "fields": {
+      "organization": "Portland Homeless Family Solutions - Thirteen Salmon Family Center",
+      "website": "http://www.pdxhfs.org/",
+      "short_description": "This is a day shelter for the families staying at Goose Hollow Family Shelter.",
+      "address": "First Unitarian Church, 1211 SW Main St., Portland, OR 97205",
+      "phone": "503-228-6389",
+      "lat": "45.518550",
+      "lng": "-122.685603",
+      "gender": "men, women, children"
+    }
+  },
+  {
+    "model": "latrineapp.resource",
+    "pk": 7,
+    "fields": {
+      "facility_type": "showers",
+      "hours": "The shelter operates year round.",
+      "place": 5
+    }
+  }
+]
