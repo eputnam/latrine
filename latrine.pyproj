@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{785b90c7-a4d2-4276-8e33-f6f312abce32}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile />
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="latrine_django\frontend\public\favicon.ico" />
+    <Content Include="latrine_django\frontend\public\index.html" />
+    <Content Include="latrine_django\frontend\src\App.css" />
+    <Content Include="latrine_django\frontend\src\App.js" />
+    <Content Include="latrine_django\frontend\src\App.test.js" />
+    <Content Include="latrine_django\frontend\src\Filters.css" />
+    <Content Include="latrine_django\frontend\src\Filters.js" />
+    <Content Include="latrine_django\frontend\src\images\potty.png" />
+    <Content Include="latrine_django\frontend\src\index.css" />
+    <Content Include="latrine_django\frontend\src\index.js" />
+    <Content Include="latrine_django\frontend\src\logo.svg" />
+    <Content Include="latrine_django\frontend\src\Map.css" />
+    <Content Include="latrine_django\frontend\src\Map.js" />
+    <Content Include="latrine_django\frontend\src\registerServiceWorker.js" />
+    <Content Include="latrine_django\requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="latrine_django\latrineapp\admin.py" />
+    <Compile Include="latrine_django\latrineapp\apps.py" />
+    <Compile Include="latrine_django\latrineapp\middleware.py" />
+    <Compile Include="latrine_django\latrineapp\migrations\0001_initial.py" />
+    <Compile Include="latrine_django\latrineapp\migrations\0002_auto_20180530_2226.py" />
+    <Compile Include="latrine_django\latrineapp\migrations\0003_flag.py" />
+    <Compile Include="latrine_django\latrineapp\migrations\0004_auto_20180531_2318.py" />
+    <Compile Include="latrine_django\latrineapp\migrations\0005_auto_20180602_0530.py" />
+    <Compile Include="latrine_django\latrineapp\migrations\0006_auto_20180602_0648.py" />
+    <Compile Include="latrine_django\latrineapp\migrations\0007_auto_20180602_0649.py" />
+    <Compile Include="latrine_django\latrineapp\migrations\0008_auto_20180609_0408.py" />
+    <Compile Include="latrine_django\latrineapp\migrations\__init__.py" />
+    <Compile Include="latrine_django\latrineapp\models.py" />
+    <Compile Include="latrine_django\latrineapp\serializers.py" />
+    <Compile Include="latrine_django\latrineapp\tests.py" />
+    <Compile Include="latrine_django\latrineapp\views.py" />
+    <Compile Include="latrine_django\latrineapp\__init__.py" />
+    <Compile Include="latrine_django\latrine_django\settings.py" />
+    <Compile Include="latrine_django\latrine_django\urls.py" />
+    <Compile Include="latrine_django\latrine_django\wsgi.py" />
+    <Compile Include="latrine_django\latrine_django\__init__.py" />
+    <Compile Include="latrine_django\manage.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="latrine_django" />
+    <Folder Include="latrine_django\frontend\" />
+    <Folder Include="latrine_django\frontend\public" />
+    <Folder Include="latrine_django\frontend\src" />
+    <Folder Include="latrine_django\frontend\src\images" />
+    <Folder Include="latrine_django\latrineapp" />
+    <Folder Include="latrine_django\latrineapp\migrations" />
+    <Folder Include="latrine_django\latrine_django" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="latrine_django\env\">
+      <Id>env</Id>
+      <Description>env (Python 3.6 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <Version>3.6</Version>
+      <Architecture>X64</Architecture>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
