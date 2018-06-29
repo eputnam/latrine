@@ -21,6 +21,7 @@ from latrineapp import views
 
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     url(r'^places/$', views.AllPlaces.as_view()),
     url(r'^places/(?P<resource_type>[\w-].+)/$', views.ResourceList.as_view()),
 ]
