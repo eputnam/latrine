@@ -8,7 +8,7 @@ export default class DrawerContent extends React.Component {
         } = this.props;
 
         //
-        //Sidebar displays the Resources and Place information including photo, address, phone, comments, etc.
+        // TODO: Find resource for phone number. The API does not provide
         //
 
         return (
