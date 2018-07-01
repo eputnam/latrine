@@ -2,11 +2,8 @@ import React from 'react';
 import './Filters.css';
 
 const Filters = props => {
-    const openDrawer = props.toggleDrawer(true);
-
     return (
         <div className="filterbox">
-            <button onClick={openDrawer}>Menu</button>
             <div className="filter">
                 <input
                     type="checkbox"

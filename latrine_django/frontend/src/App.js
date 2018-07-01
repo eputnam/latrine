@@ -60,7 +60,6 @@ export default class App extends Component {
                 <Filters
                     restroomsChecked={this.state.restroomsChecked}
                     toggleRestrooms={this.toggleRestrooms}
-                    toggleDrawer={this.toggleDrawer}
                 />
                 <MapContainer
                     restroomsChecked={this.state.restroomsChecked}
