@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import './Map.css';
 const pottyImage = require('../../images/potty.png');
