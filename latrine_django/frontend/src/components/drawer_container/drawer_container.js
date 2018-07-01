@@ -4,7 +4,18 @@ import DrawerContent from '../drawer_content/drawer_content';
 
 export default class DrawerContainer extends React.Component {
     render() {
-        const { restrooms, isDrawerOpen, toggleDrawer } = this.props;
+        const {
+            restrooms,
+            isDrawerOpen,
+            toggleDrawer,
+            selectedRestroomId,
+        } = this.props;
+
+        const hasRestrooms = restrooms.sort.length > 0;
+        const selectedRestroomData =
+            hasRestrooms && selectedRestroomId
+                ? restrooms.items[selectedRestroomId]
+                : null;
 
         return (
             <Drawer open={isDrawerOpen} onClose={toggleDrawer(false)}>
@@ -14,7 +25,10 @@ export default class DrawerContainer extends React.Component {
                     onClick={toggleDrawer(false)}
                     onKeyDown={toggleDrawer(false)}
                 >
-                    <DrawerContent restrooms={restrooms} />
+                    <DrawerContent
+                        restrooms={restrooms}
+                        selectedRestroomData={selectedRestroomData}
+                    />
                 </div>
             </Drawer>
         );

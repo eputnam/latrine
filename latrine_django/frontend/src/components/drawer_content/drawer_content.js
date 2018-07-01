@@ -2,6 +2,9 @@ import React from 'react';
 
 export default class DrawerContent extends React.Component {
     render() {
-        return <div>Drawer</div>;
+        const {
+            selectedRestroomData: { name },
+        } = this.props;
+        return <div>{name}</div>;
     }
 }
