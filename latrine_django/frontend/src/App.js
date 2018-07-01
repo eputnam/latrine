@@ -1,30 +1,55 @@
 import React, { Component } from 'react';
+import Drawer from '@material-ui/core/Drawer';
 import MapContainer from './Map.js';
 import Filters from './Filters.js';
 import './App.css';
 
 export default class App extends Component {
-
-  constructor() {
-    super()
-    this.state = {
-      restroomsChecked: true
+    constructor() {
+        super();
+        this.state = {
+            restroomsChecked: true,
+            drawer: false,
+        };
+        this.toggleRestrooms = this.toggleRestrooms.bind(this);
+        this.toggleDrawer = this.toggleDrawer.bind(this);
     }
-    this.toggleRestrooms = this.toggleRestrooms.bind(this);
-  }
 
-  toggleRestrooms() {
-    this.setState({
-      restroomsChecked: !this.state.restroomsChecked
-    });
-  }
+    toggleDrawer = isOpen => () => {
+        this.setState({
+            drawer: isOpen,
+        });
+    };
 
-  render() {
-    return (
-      <div className="app">
-        <Filters restroomsChecked={this.state.restroomsChecked} toggleRestrooms={this.toggleRestrooms} />
-        <MapContainer restroomsChecked={this.state.restroomsChecked} />
-      </div>
-    );
-  }
+    toggleRestrooms() {
+        this.setState({
+            restroomsChecked: !this.state.restroomsChecked,
+        });
+    }
+
+    render() {
+        return (
+            <div className="app">
+                <Drawer
+                    anchor="right"
+                    open={this.state.drawer}
+                    onClose={this.toggleDrawer(false)}
+                >
+                    <div
+                        tabIndex={0}
+                        role="button"
+                        onClick={this.toggleDrawer(false)}
+                        onKeyDown={this.toggleDrawer(false)}
+                    >
+                        TEST
+                    </div>
+                </Drawer>
+                <Filters
+                    restroomsChecked={this.state.restroomsChecked}
+                    toggleRestrooms={this.toggleRestrooms}
+                />
+                <MapContainer restroomsChecked={this.state.restroomsChecked} />
+            </div>
+        );
+    }
 }
