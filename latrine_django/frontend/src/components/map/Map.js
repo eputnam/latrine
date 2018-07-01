@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import './Map.css';
+const pottyImage = require('../../images/potty.png');
 
 export class MapContainer extends Component {
     constructor() {
@@ -52,7 +53,7 @@ export class MapContainer extends Component {
                                 name={'RefugeRestrooms.org'}
                                 position={{ lat: i.latitude, lng: i.longitude }}
                                 icon={{
-                                    url: require('./images/potty.png'),
+                                    url: pottyImage,
                                     anchor: new google.maps.Point(32, 32),
                                     scaledSize: new google.maps.Size(45, 45),
                                 }}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import MapContainer from './Map.js';
-import Filters from './Filters.js';
+import MapContainer from './components/map/Map';
+import Filters from './components/filters/Filters';
 import './App.css';
 
 export default class App extends Component {
