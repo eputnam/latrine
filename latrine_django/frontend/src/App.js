@@ -27,7 +27,7 @@ export default class App extends Component {
         getRestrooms(this.setState.bind(this));
     }
 
-    toggleDrawer = isOpen => () => {
+    toggleDrawer = (isOpen = true) => () => {
         this.setState({
             isDrawerOpen: isOpen,
         });
@@ -42,6 +42,7 @@ export default class App extends Component {
     selectMarker = markerId => () => {
         this.setState({
             selectedMarker: markerId,
+            isDrawerOpen: true,
         });
     };
 
@@ -54,6 +55,7 @@ export default class App extends Component {
                     restrooms={restrooms}
                     toggleDrawer={this.toggleDrawer}
                     isDrawerOpen={this.state.isDrawerOpen}
+                    selectedRestroomId={this.state.selectedMarker}
                 />
                 <Filters
                     restroomsChecked={this.state.restroomsChecked}
