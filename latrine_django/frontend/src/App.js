@@ -11,6 +11,7 @@ export default class App extends Component {
             restroomsChecked: true,
             drawer: false,
         };
+
         this.toggleRestrooms = this.toggleRestrooms.bind(this);
         this.toggleDrawer = this.toggleDrawer.bind(this);
     }
@@ -31,7 +32,6 @@ export default class App extends Component {
         return (
             <div className="app">
                 <Drawer
-                    anchor="right"
                     open={this.state.drawer}
                     onClose={this.toggleDrawer(false)}
                 >
@@ -47,6 +47,7 @@ export default class App extends Component {
                 <Filters
                     restroomsChecked={this.state.restroomsChecked}
                     toggleRestrooms={this.toggleRestrooms}
+                    toggleDrawer={this.toggleDrawer}
                 />
                 <MapContainer restroomsChecked={this.state.restroomsChecked} />
             </div>
