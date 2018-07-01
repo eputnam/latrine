@@ -1,31 +1,50 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export default class DrawerContent extends React.Component {
-    constructor() {
-        super();
-
-        this.makeListItems = this.makeListItems.bind(this);
-    }
-
-    makeListItems() {
+    render() {
         const {
             selectedRestroomData: { name, comment, street, city, country },
         } = this.props;
+
         //
         //Sidebar displays the Resources and Place information including photo, address, phone, comments, etc.
         //
+
         return (
-            <React.Fragment>
-                <li>{name}</li>
-                <li>{comment}</li>
-                <li>{street}</li>
-                <li>{city}</li>
-                <li>{country}</li>
-            </React.Fragment>
+            <StyledUL>
+                {!!name && (
+                    <li>
+                        <h3>Name:</h3>
+                        <span>{name}</span>
+                    </li>
+                )}
+                {!!comment && (
+                    <li>
+                        <h3>Comments:</h3>
+                        <span>{comment}</span>
+                    </li>
+                )}
+                {!!street && (
+                    <li>
+                        <h3>Street:</h3>
+                        <span>{street}</span>
+                    </li>
+                )}
+                {!!city && <li>{city}</li>}
+                {!!country && <li>{country}</li>}
+            </StyledUL>
         );
     }
-
-    render() {
-        return <ul>{this.makeListItems()}</ul>;
-    }
 }
+
+const StyledUL = styled.ul`
+    list-style-type: none;
+    margin-left: 0;
+    padding: 10px;
+    max-width: 500px;
+
+    li {
+        margin-bottom: 5px;
+    }
+`;
