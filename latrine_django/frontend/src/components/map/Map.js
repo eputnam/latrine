@@ -31,7 +31,7 @@ export class MapContainer extends Component {
                         return (
                             <Marker
                                 key={markerindex}
-                                onClick={this.props.selectMarker(markerindex)}
+                                onClick={this.props.selectMarker(restroomId)}
                                 title={'RefugeRestrooms.org -' + street}
                                 name={'RefugeRestrooms.org'}
                                 position={{ lat: latitude, lng: longitude }}
