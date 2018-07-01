@@ -5,29 +5,8 @@ import './Map.css';
 const pottyImage = require('../../images/potty.png');
 
 export class MapContainer extends Component {
-    constructor() {
-        super();
-        this.state = {
-            restrooms: [],
-        };
-    }
-
-    componentDidMount() {
-        // Calling RefugeRestrooms.org API
-        axios
-            .get(
-                'https://www.refugerestrooms.org:443/api/v1/restrooms/search.json?per_page=100&query=portland',
-            )
-            .then(response => {
-                console.log(response.data);
-                this.setState({ restrooms: response.data });
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-
     render() {
+        const { restrooms } = this.props;
         return (
             <Map
                 google={this.props.google}
@@ -43,16 +22,19 @@ export class MapContainer extends Component {
                     lng: -122.6765,
                 }}
             >
-                {this.state.restrooms.map((i, markerindex) => {
+                {restrooms.sort.map((restroomId, markerindex) => {
                     const google = window.google;
+                    const currentRestroom = restrooms.items[restroomId];
+                    const { street, latitude, longitude } = currentRestroom;
+
                     if (this.props.restroomsChecked) {
                         return (
                             <Marker
                                 key={markerindex}
                                 onClick={this.props.selectMarker(markerindex)}
-                                title={'RefugeRestrooms.org -' + i.street}
+                                title={'RefugeRestrooms.org -' + street}
                                 name={'RefugeRestrooms.org'}
-                                position={{ lat: i.latitude, lng: i.longitude }}
+                                position={{ lat: latitude, lng: longitude }}
                                 icon={{
                                     url: pottyImage,
                                     anchor: new google.maps.Point(32, 32),

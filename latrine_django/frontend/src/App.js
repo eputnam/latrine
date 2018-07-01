@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Drawer from '@material-ui/core/Drawer';
 import MapContainer from './components/map/Map';
 import DrawerContainer from './components/drawer_container/drawer_container';
 import Filters from './components/filters/Filters';
+import { getRestrooms } from './util/restrooms_utils';
 import './App.css';
 
 export default class App extends Component {
@@ -10,17 +10,26 @@ export default class App extends Component {
         super();
         this.state = {
             restroomsChecked: true,
-            drawer: false,
+            isDrawerOpen: false,
             selectedMarker: null,
+            restrooms: {
+                items: [],
+                sort: [],
+                selected: '',
+            },
         };
 
         this.toggleRestrooms = this.toggleRestrooms.bind(this);
         this.toggleDrawer = this.toggleDrawer.bind(this);
     }
 
+    componentDidMount() {
+        getRestrooms(this.setState.bind(this));
+    }
+
     toggleDrawer = isOpen => () => {
         this.setState({
-            drawer: isOpen,
+            isDrawerOpen: isOpen,
         });
     };
 
@@ -37,21 +46,15 @@ export default class App extends Component {
     };
 
     render() {
+        const { restrooms } = this.state;
+
         return (
             <div className="app">
-                <Drawer
-                    open={this.state.drawer}
-                    onClose={this.toggleDrawer(false)}
-                >
-                    <div
-                        tabIndex={0}
-                        role="button"
-                        onClick={this.toggleDrawer(false)}
-                        onKeyDown={this.toggleDrawer(false)}
-                    >
-                        <DrawerContainer />
-                    </div>
-                </Drawer>
+                <DrawerContainer
+                    restrooms={restrooms}
+                    toggleDrawer={this.toggleDrawer}
+                    isDrawerOpen={this.state.isDrawerOpen}
+                />
                 <Filters
                     restroomsChecked={this.state.restroomsChecked}
                     toggleRestrooms={this.toggleRestrooms}
@@ -60,6 +63,7 @@ export default class App extends Component {
                 <MapContainer
                     restroomsChecked={this.state.restroomsChecked}
                     selectMarker={this.selectMarker}
+                    restrooms={restrooms}
                 />
             </div>
         );
