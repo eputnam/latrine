@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import MapContainer from './components/map/Map';
+import DrawerContainer from './components/drawer_container/drawer_container';
 import Filters from './components/filters/Filters';
 import './App.css';
 
@@ -10,6 +11,7 @@ export default class App extends Component {
         this.state = {
             restroomsChecked: true,
             drawer: false,
+            selectedMarker: null,
         };
 
         this.toggleRestrooms = this.toggleRestrooms.bind(this);
@@ -28,6 +30,12 @@ export default class App extends Component {
         });
     }
 
+    selectMarker = markerId => () => {
+        this.setState({
+            selectedMarker: markerId,
+        });
+    };
+
     render() {
         return (
             <div className="app">
@@ -41,7 +49,7 @@ export default class App extends Component {
                         onClick={this.toggleDrawer(false)}
                         onKeyDown={this.toggleDrawer(false)}
                     >
-                        TEST
+                        <DrawerContainer />
                     </div>
                 </Drawer>
                 <Filters
@@ -49,7 +57,10 @@ export default class App extends Component {
                     toggleRestrooms={this.toggleRestrooms}
                     toggleDrawer={this.toggleDrawer}
                 />
-                <MapContainer restroomsChecked={this.state.restroomsChecked} />
+                <MapContainer
+                    restroomsChecked={this.state.restroomsChecked}
+                    selectMarker={this.selectMarker}
+                />
             </div>
         );
     }
