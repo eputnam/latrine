@@ -27,6 +27,10 @@ class Resource(models.Model):
     hours = models.TextField(max_length=255, default='', null=True)
     short_description = models.TextField(max_length=1000, default='', null=True)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="resources")
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+    accessible = models.NullBooleanField(null=True)
+    changing_table = models.NullBooleanField(null=True)
 
 
 class Feedback(models.Model):
@@ -37,6 +41,7 @@ class Feedback(models.Model):
         ('thumbs_down', 'thumbs_down')
     )
 
-    icon_type = models.CharField(max_length=255, choices=FEEDBACK_CHOICES, default='', null=True)
+    upvote = models.IntegerField(default=0)
+    downvote = models.IntegerField(default=0)
     comment = models.TextField(max_length=2000, default='', null=True)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE, related_name="feedback")

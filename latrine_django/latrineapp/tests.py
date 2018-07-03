@@ -1,4 +1,5 @@
 import json
+import datetime
 from django.test import TestCase
 from django.test import Client
 from .models import Place, Resource, Feedback
@@ -18,12 +19,15 @@ class PlaceTestCase(TestCase):
             gender="women, children",
             image="")
 
-        self.resource1 = Resource.objects.create(facility_type="showers", hours="Monday, Tuesday and Thursday, from 9am-4pm.", short_description="Private shower facilities for women and children in need.", place=self.place)
-        self.resource2 = Resource.objects.create(facility_type="restrooms", hours="24h", short_description="Accessible restrooms.", place=self.place)
+        self.now = datetime.datetime.utcnow().__str__()
+        self.past = (datetime.datetime.utcnow() - datetime.timedelta(days=1)).__str__()
 
-        self.feedback1 = Feedback.objects.create(icon_type="thumbs_up", comment="Safe place!", resource=self.resource1)
-        self.feedback2 = Feedback.objects.create(icon_type="thumbs_down", comment="Not safe!", resource=self.resource1)
-        self.feedback3 = Feedback.objects.create(icon_type="thumbs_up", comment="Good experience.", resource=self.resource2)
+        self.resource1 = Resource.objects.create(created_at=self.past, updated_at=self.now, facility_type="showers", hours="Monday, Tuesday and Thursday, from 9am-4pm.", short_description="Private shower facilities for women and children in need.", place=self.place)
+        self.resource2 = Resource.objects.create(accessible=False, changing_table=True, facility_type="restrooms", hours="24h", short_description="Accessible restrooms.", place=self.place)
+
+        self.feedback1 = Feedback.objects.create(upvote=3, comment="Safe place!", resource=self.resource1)
+        self.feedback2 = Feedback.objects.create(downvote=2, comment="Not safe!", resource=self.resource1)
+        self.feedback3 = Feedback.objects.create(comment="Good experience.", resource=self.resource2)
 
         self.c = Client()
 
@@ -50,20 +54,24 @@ class PlaceTestCase(TestCase):
         self.assertEqual(self.resource1.hours, "Monday, Tuesday and Thursday, from 9am-4pm.")
         self.assertEqual(self.resource1.short_description, "Private shower facilities for women and children in need.")
         self.assertEqual(self.resource1.place, self.place)
+        self.assertEqual(self.resource1.updated_at.__str__()[:-6], self.now)
+        self.assertNotEqual(self.resource1.created_at.__str__()[:-6], self.past)
         self.assertEqual(self.resource2.facility_type, "restrooms")
         self.assertEqual(self.resource2.hours, "24h")
         self.assertEqual(self.resource2.short_description, "Accessible restrooms.")
         self.assertEqual(self.resource2.place, self.place)
+        self.assertNotEqual(self.resource2.accessible, True)
+        self.assertEqual(self.resource2.changing_table, True)
 
-        self.assertEqual(self.feedback1.icon_type, "thumbs_up")
         self.assertEqual(self.feedback1.comment, "Safe place!")
         self.assertEqual(self.feedback1.resource, self.resource1)
+        self.assertEqual(self.feedback1.upvote, 3)
         self.assertNotEqual(self.feedback1.resource, self.resource2)
-        self.assertEqual(self.feedback2.icon_type, "thumbs_down")
+        self.assertNotEqual(self.feedback1.downvote, 3)
         self.assertEqual(self.feedback2.comment, "Not safe!")
         self.assertEqual(self.feedback2.resource, self.resource1)
+        self.assertEqual(self.feedback2.downvote, 2)
         self.assertNotEqual(self.feedback2.resource, self.resource2)
-        self.assertEqual(self.feedback3.icon_type, "thumbs_up")
         self.assertEqual(self.feedback3.comment, "Good experience.")
         self.assertEqual(self.feedback3.resource, self.resource2)
         self.assertNotEqual(self.feedback3.resource, self.resource1)
@@ -83,15 +91,15 @@ class PlaceTestCase(TestCase):
                              'phone': '503-248-6364',
                              'resources': [{'facility_type': 'showers',
                                             'feedback': [{'comment': 'Safe place!',
-                                                          'icon_type': 'thumbs_up'},
+                                                          'downvote':0, 'upvote': 3},
                                                          {'comment': 'Not safe!',
-                                                          'icon_type': 'thumbs_down'}],
+                                                          'downvote':2, 'upvote':0}],
                                             'hours': 'Monday, Tuesday and Thursday, from 9am-4pm.',
                                             'short_description': 'Private shower facilities for women and '
                                                                  'children in need.'},
                                            {'facility_type': 'restrooms',
                                             'feedback': [{'comment': 'Good experience.',
-                                                          'icon_type': 'thumbs_up'}],
+                                                          'downvote':0, 'upvote':0}],
                                             'hours': '24h',
                                             'short_description': 'Accessible restrooms.'}],
                              'short_description': 'Rose Haven offers various facilities to women and '
