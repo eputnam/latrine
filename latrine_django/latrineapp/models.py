@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Place(models.Model):
@@ -27,16 +28,16 @@ class Resource(models.Model):
     hours = models.TextField(max_length=255, default='', null=True)
     short_description = models.TextField(max_length=1000, default='', null=True)
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="resources")
-
+    created_at = models.DateTimeField(default=timezone.now, null=True)
+    updated_at = models.DateTimeField(default=timezone.now, null=True)
+    accessible = models.NullBooleanField(default=False, null=True)
+    changing_table = models.NullBooleanField(default=False, null=True)
+    
 
 class Feedback(models.Model):
-    """One facility can have many types of feedback (icons and comments)."""
+    """One facility can have many types of feedback (votes and comments)."""
 
-    FEEDBACK_CHOICES = (
-        ('thumbs_up', 'thumbs_up'),
-        ('thumbs_down', 'thumbs_down')
-    )
-
-    icon_type = models.CharField(max_length=255, choices=FEEDBACK_CHOICES, default='', null=True)
+    upvote = models.IntegerField(default=0)
+    downvote = models.IntegerField(default=0)
     comment = models.TextField(max_length=2000, default='', null=True)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE, related_name="feedback")
