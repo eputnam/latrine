@@ -16,23 +16,30 @@ class Place(models.Model):
     image = models.ImageField(null=True)
 
     def __str__(self):
-        return '{} - {} - {}'.format(self.facility_type, self.organization, self.address)
+        return '{} - {}'.format(self.organization, self.address)
 
     def save(self, *args, **kwargs):
         super(Place, self).save(*args, **kwargs)
 
+    class Meta:
+        unique_together = ('lat', 'lng',)
+
 
 class Resource(models.Model):
     """Places can have different resources."""
+
     facility_type = models.CharField(max_length=255, default='', null=False)  # required
     hours = models.TextField(max_length=255, default='', null=True)
     short_description = models.TextField(max_length=1000, default='', null=True)
-    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="resources")
     created_at = models.DateTimeField(default=timezone.now, null=True)
     updated_at = models.DateTimeField(default=timezone.now, null=True)
     accessible = models.NullBooleanField(default=False, null=True)
     changing_table = models.NullBooleanField(default=False, null=True)
-    
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="resources", null=True)
+
+    def __str__(self):
+        return '{} - {}'.format(self.facility_type, self.place)
+
 
 class Feedback(models.Model):
     """One facility can have many types of feedback (votes and comments)."""
@@ -40,4 +47,7 @@ class Feedback(models.Model):
     upvote = models.IntegerField(default=0)
     downvote = models.IntegerField(default=0)
     comment = models.TextField(max_length=2000, default='', null=True)
-    resource = models.ForeignKey(Resource, on_delete=models.CASCADE, related_name="feedback")
+    resource = models.ForeignKey(Resource, on_delete=models.CASCADE, related_name="feedback", null=True)
+
+    def __str__(self):
+        return '{}'.format(self.resource)
