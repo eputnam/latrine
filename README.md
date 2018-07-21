@@ -30,11 +30,20 @@ Web app for finding hygiene resources in Portland, OR
     ```sh
     $ python manage.py loaddata fixturefile.json
     ```
-9. To start the development server, run:
+9. Populate the database with the RefugeRestrooms public data:
+    ```sh
+    $ python manage.py get_restrooms
+    ```
+10. To have access to the Django admin site, run:
+    ```sh
+    $ python manage.py createsuperuser
+    ```
+Follow the prompts to set up your login and password.
+11. To start the development server, run:
     ```sh
     $ python manage.py runserver
     ```
-10. Open http://localhost:8000 in your browser to view the app.
+12. Open http://localhost:8000 in your browser to view the list of available endpoints.
 ### For React:
 The React app will live in the ```/frontend``` folder and talk to Django over an API.
 1. You’ll need to have [Node.js](http://nodejs.org/en/) on your local development machine. The Node.js package comes with ```npm```, the package manager for JavaScript.
