@@ -1,5 +1,7 @@
 import json
-from django.test import TestCase
+from io import StringIO
+from django.core.management import call_command
+from django.test import TestCase, TransactionTestCase
 from django.test import Client
 from django.utils import timezone
 from .models import Place, Resource, Feedback
@@ -18,9 +20,9 @@ class PlaceTestCase(TestCase):
             lng="-122.689642",
             gender="women, children",
             image="")
-        
+
         self.now = timezone.now().strftime('%Y-%m-%d %H:%M')
-        self.past = (timezone.now() - timezone.timedelta(days=1)).strftime('%Y-%m-%d %H:%M')     
+        self.past = (timezone.now() - timezone.timedelta(days=1)).strftime('%Y-%m-%d %H:%M')
 
         self.resource1 = Resource.objects.create(created_at=self.past, updated_at=self.now, facility_type="showers", hours="Monday, Tuesday and Thursday, from 9am-4pm.", short_description="Private shower facilities for women and children in need.", place=self.place)
         self.resource2 = Resource.objects.create(created_at=self.past, updated_at=self.now, accessible=False, changing_table=True, facility_type="restrooms", hours="24h", short_description="Accessible restrooms.", place=self.place)
@@ -123,3 +125,14 @@ class PlaceTestCase(TestCase):
         self.assertEqual(len(response1.data), 1)
         self.assertEqual(len(response2.data), 1)
         self.assertEqual(len(response3.data), 1)
+
+
+class RefugeRestrooms(TransactionTestCase):
+    """Testing the visual output of the custom management command get_restrooms."""
+    def test_command_output(self):
+        print("Testing custom management command *get_restrooms*. Be patient - it will take a bit longer than the rest of the unit tests...")
+        out = StringIO()
+        call_command('get_restrooms', stdout=out)
+        self.assertIn('Page 1 of the API; 100 records have been analyzed.', out.getvalue())
+        self.assertIn('Page 7 of the API;', out.getvalue())  # there will always be at least 7 pages
+        self.assertNotIn('404', out.getvalue())
