@@ -6,57 +6,69 @@ Web app for finding hygiene resources in Portland, OR
 ## Instructions for the Team
 1. Fork and clone this project.
 ### For Django:
-2. Django requires Python to run. Download Python3 at https://www.python.org/downloads/ or with your operating system's package manager.
-3. You may need to install ```pip``` (Python package manager) if you don't have it already. Follow [pip installation](http://pip.readthedocs.io/en/stable/installing/#install-pip).
-4. Install ```virtualenv``` with ```pip``` (pip is already installed if you're using the latest version of Python). ```virtualenv``` is a tool to create isolated Python environments.
+## Run with Docker and Docker Compose:
+Uncomment PostgreSQL database settings in ```settings.py``` and comment out sqlite3 settings above.
+In the root folder run:
+```sh
+$ [sudo] docker compose up --build -d
+```
+Open http://localhost:8000 in your browser to view the list of available endpoints (you might need to wait around 30 seconds until all management commands inside the Django container are complete).
+To stop and remove the containers, use:
+```sh
+$ [sudo] docker compose down
+```
+## Run Django without Docker:
+1. Django requires Python to run. Download Python3 at https://www.python.org/downloads/ or with your operating system's package manager.
+2. You may need to install ```pip``` (Python package manager) if you don't have it already. Follow [pip installation](http://pip.readthedocs.io/en/stable/installing/#install-pip).
+3. Install ```virtualenv``` with ```pip``` (pip is already installed if you're using the latest version of Python). ```virtualenv``` is a tool to create isolated Python environments.
     ```sh
     $ [sudo] pip install virtualenv
     ```
-5. Create and activate your virtual environment.
+4. Create and activate your virtual environment.
     ```sh
     $ virtualenv env --no-site-packages
     $ source env/bin/activate
     ```
-6. After you’ve created and activated a virtual environment, Navigate to the Django project directory ```latrine_django```. Install Django and other dependences:
+5. After you’ve created and activated a virtual environment, Navigate to the Django project directory ```latrine_django```. Install Django and other dependences:
     ```sh
     $ [sudo] pip install -r requirements.txt
     ```
-7. Apply migrations:
+6. Apply migrations:
     ```sh
     $ python manage.py makemigrations
     $ python manage.py migrate
     ```
-8. Apply fixtures to populate the database with sample data:
+7. Apply fixtures to populate the database with sample data:
     ```sh
     $ python manage.py loaddata fixturefile.json
     ```
-9. Populate the database with the RefugeRestrooms public data:
+8. Populate the database with the RefugeRestrooms public data:
     ```sh
     $ python manage.py get_restrooms
     ```
-10. To have access to the Django admin site, run:
+9. To have access to the Django admin site, run:
     ```sh
     $ python manage.py createsuperuser
     ```
 Follow the prompts to set up your login and password.
-11. To start the development server, run:
+10. To start the development server, run:
     ```sh
     $ python manage.py runserver
     ```
-12. Open http://localhost:8000 in your browser to view the list of available endpoints.
+11. Open http://localhost:8000 in your browser to view the list of available endpoints.
 ### For React:
 The React app will live in the ```/frontend``` folder and talk to Django over an API.
 1. You’ll need to have [Node.js](http://nodejs.org/en/) on your local development machine. The Node.js package comes with ```npm```, the package manager for JavaScript.
-1. ```cd``` into the ```/frontend``` directory and install the existing setup:
+2. ```cd``` into the ```/frontend``` directory and install the existing setup:
     ```sh
     $ cd ./frontend
     $ npm install
     ```
-2. To start the development server, run:
+3. To start the development server, run:
     ```sh
     $ npm start
     ```
-3. Open http://localhost:3000 in your browser to view the app.
+4. Open http://localhost:3000 in your browser to view the app.
 
 # Deploy
 
@@ -67,6 +79,10 @@ The React app will live in the ```/frontend``` folder and talk to Django over an
 Cd into ```/latrine_django``` and run:
 ```sh
 $ python manage.py test
+```
+If you use Docker and Docker Compose, spin up containers and run:
+```sh
+[sudo] docker-compose run latrine-django python manage.py test
 ```
 # Contribute!
 

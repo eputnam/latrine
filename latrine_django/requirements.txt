@@ -3,3 +3,5 @@ djangorestframework
 Pillow
 django-cors-headers
 requests
+uwsgi
+psycopg2-binary

@@ -1,0 +1,28 @@
+version: '2.1'
+
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    volumes:
+      - .:/var/lib/postgresql
+    ports:
+      - '5435:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+    healthcheck:
+      test: exit 0
+
+  latrine-django:
+    container_name: latrine-django
+    build: ./latrine_django
+    ports:
+      - '8000:8000'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    links:
+      - postgres

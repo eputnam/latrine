@@ -37,7 +37,8 @@
     "model": "latrineapp.feedback",
     "pk": 1,
     "fields": {
-      "icon_type": "thumbs_up",
+      "downvote": 0,
+      "upvote": 1,
       "comment": "Safe place!",
       "resource": 1
     }
@@ -46,7 +47,8 @@
     "model": "latrineapp.feedback",
     "pk": 2,
     "fields": {
-      "icon_type": "thumbs_down",
+      "upvote": 0,
+      "downvote": 1,
       "comment": "Not at this address anymore!",
       "resource": 1
     }
@@ -55,7 +57,8 @@
     "model": "latrineapp.feedback",
     "pk": 3,
     "fields": {
-      "icon_type": "thumbs_down",
+      "upvote": 0,
+      "downvote": 1,
       "comment": "Filthy restrooms!",
       "resource": 2
     }

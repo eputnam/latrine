@@ -77,12 +77,25 @@ WSGI_APPLICATION = 'latrine_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# sqlite3 (Django default database)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# PostgreSQL - uncomment if you use Docker and comment out sqlite3 settings above
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'mysecretpassword',
+#         'HOST': 'postgres',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
