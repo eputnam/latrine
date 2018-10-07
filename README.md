@@ -4,7 +4,11 @@ Web app for finding hygiene resources in Portland, OR
 # Setup
 
 ## Instructions for the Team
-1. Fork and clone this project.
+1. Fork this repository
+2. Clone to your local files
+3. Checkout to a new branch
+4. Make your changes
+5. ACP and submit a Pull Request
 ### For Django:
 ## Run with Docker and Docker Compose:
 Uncomment PostgreSQL database settings in ```settings.py``` and comment out sqlite3 settings above.
